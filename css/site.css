@@ -1,0 +1,67 @@
+body {
+    font-family: Verdana, Arial;
+}
+.logo {
+    max-height: 2.3em;
+    margin: .5em;
+}
+.barra-sup {
+    margin-bottom: 0;
+    min-height: 5vh;
+}
+.barra-sup .navbar-header{
+    float: left;
+}
+.menu-lateral {
+    padding-left: 0;
+    padding-right: 0;
+    height: 92vh;
+}
+.menu-lateral, .menu-lateral li, .menu-lateral a {
+    background-color: #EEE;
+    border-radius: 0;
+}
+.menu-lateral ul {
+    margin-bottom: 0;
+}
+.menu-lateral a.sub-item {
+    padding-left: 4em;
+    font-size: 0.9em;
+}
+.menu-lateral i {
+    margin-right: 0.7em;
+}
+.contenido {
+    height: 91vh;
+    width: 100%;
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#content {
+    width: 100%;
+    height: 91vh;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    height: 91vh;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+/*@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+}*/
