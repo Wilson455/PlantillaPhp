@@ -4,7 +4,7 @@ require_once('DataBase.interface.php');
 
 class SQLServerDatabase implements IDataBase {
 
-    //  Pruoduccion
+    //Datos de Conexión
     var $host = "localhost\\SQLEXPRESS";
     var $database = "Prueba";
     var $user = "usr_microservices";
