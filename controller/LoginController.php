@@ -2,7 +2,11 @@
 
 session_start();
 require_once('../class/CapturaInformacionUsuario.class.php');
+require_once('../class/CapturaInformacionOracle.class.php');
 $captura = new CapturaInformacion;
+$capturaO = new CapturaInformacionOracle;
+
+$var = $capturaO->database->query('SELECT * FROM TABLANUEVAPRUEBA');
 
 $_SESSION['Usuario'] = htmlentities($_POST['usuario']);
 $clave = htmlentities($_POST['password']);
