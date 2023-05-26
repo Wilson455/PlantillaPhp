@@ -13,7 +13,7 @@ class CapturaInformacion {
 
 
 	
-	 public function getDatosUsuario($_usuario) {
+	public function getDatosUsuario($_usuario) {
         $sql = "SELECT Usuario, Nombre
                 FROM Usuario
                 WHERE Usuario = '" . $_usuario . "'";

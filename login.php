@@ -8,7 +8,7 @@ session_start();
         <title>Login Plantilla</title>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <script src="js/jquery-3.5.1.js"></script>     
+        <script src="js/jquery1.9.js"></script>     
         <script src="js/bootstrap.js" type="text/javascript"></script>
         <script src="js/bootbox.min.js" type="text/javascript"></script>  
         <style>

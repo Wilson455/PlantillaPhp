@@ -1,21 +1,21 @@
 <?php
 ini_set('set_time_limit', 0);
 session_start();
-include 'class/CapturaInformacion.class.php';
+include 'class/CapturaInformacionOracle.class.php';
 if (!isset($_SESSION['Usuario'])) {
     //si no existe usuario
     header('Location: pages/AccesoDenegado.php');
 } else {
     $cedula = $_SESSION['Usuario'];
     // echo $cedula;
-    $modulo = new CapturaInformacion();
+    $modulo = new CapturaInformacionOracle();
     $result = $modulo->getDatosUsuario($cedula);
 
     if (sizeof($result) == 0) {
 //        header('Location: pages/AccesoDenegado.php');
     } else {
-        $usuario = utf8_encode($result[0]['Usuario']);
-        $nombre = utf8_encode($result[0]['Nombre']);
+        $usuario = utf8_encode($result[0]['USUARIO']);
+        $nombre = utf8_encode($result[0]['NOMBRECOMPLETO']);
         $perfil = 'prueba';
         //$menu = $modulo->getMenuCompleto($result[0]['perfil']);
         ?>

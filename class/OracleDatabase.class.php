@@ -31,13 +31,13 @@ class OracleDatabase implements IDataBase {
         }
         
         $query = oci_parse($this->conn, $sql);
-        oci_execute($query, OCI_NO_AUTO_COMMIT);
+        oci_execute($query);
         oci_commit($this->conn);
 
-        $data = oci_fetch_array($query, OCI_ASSOC);
+        $data = oci_fetch_all($query, $res, null, null, OCI_FETCHSTATEMENT_BY_ROW);
         oci_close($this->conn);
 
-        return $data;
+        return $res;
     }
 
     function nonReturnQuery($sql) {}

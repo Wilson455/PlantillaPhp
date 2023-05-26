@@ -13,14 +13,13 @@ and open the template in the editor.
   </head>
     <body>
         <div class="error-page" align="center">
-            <h2 class="headline text-info">403</h2>
+            <h2 class="headline text-info">Acceso denegado.</h2>
             <div class="error-content">
-                <h3><i class="fa fa-warning text-yellow"></i> Oops! Acceso denegado.</h3>
+                <h2><i class=""></i>403</h2>
                 <p>
-                     Usted no posee los permisos necesarios para acceder a esta pagina. 
-                    Por favor dirijase  <a href='http://192.168.211.222:9999/Logueo'>Aqui</a><br/>
-                    Si el problema persiste contacte el departamento de tecnologia.    <br/>               
-                     <img src="" width="30%" align='center'/>  
+                     Usted no posee los permisos necesarios para acceder a esta pagina.<br/>
+                    Por favor dirijase  <a href='http://192.168.1.2:9990/App_Plantilla/login.php'>Aqui.</a><br/><br/>               
+                     <img src="../imagenes/403.png"  align='center'/>  
                 </p>                
             </div>
         </div>
