@@ -14,6 +14,12 @@ switch ($_POST['metodo']) {
     case 'getConteoComponentes':
         XML::xmlResponse(getConteoComponentes());
         break;
+    case 'getGuardarComponente':
+        XML::xmlResponse(getGuardarComponente($_POST['nombre'],$_POST['marca'],$_POST['modelo'],$_POST['serial'],$_POST['idEstado'],$_POST['idSolicitante'],$_POST['idEncargado']));
+        break;
+    case 'getActualizarComponente':
+        XML::xmlResponse(getActualizarComponente($_POST['id'],$_POST['nombre'],$_POST['marca'],$_POST['modelo'],$_POST['serial'],$_POST['idEstado'],$_POST['idSolicitante'],$_POST['idEncargado']));
+        break;
 }
 
 function getEstados() {
@@ -71,5 +77,29 @@ function getConteoComponentes() {
     }
     return $xml;
 }
+
+function getGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
+    $captura = new CapturaInformacionOracle();
+    $data = $captura->getGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
+    if ($data) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getActualizarComponente($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
+    $captura = new CapturaInformacionOracle();
+    $data = $captura->getActualizarComponente($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
+
+    if ($data) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
 ?>
 

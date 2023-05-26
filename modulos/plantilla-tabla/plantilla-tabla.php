@@ -41,8 +41,7 @@ if (!isset($_SESSION['Usuario'])) {
                         <th>CANTIDAD</th>
                     </tr>
                 </thead>
-                <tbody >
-                    
+                <tbody>
                 </tbody>
             </table>
         </div>
@@ -63,7 +62,6 @@ if (!isset($_SESSION['Usuario'])) {
                     </tr>
                 </thead>
                 <tbody >
-                    
                 </tbody>
             </table>
         </div>

@@ -21,4 +21,32 @@ $(document).ready(function () {
         });
     }
 
+    $("#btnGuardar").click(function () {
+        $.ajax({
+            url: "../../controller/CapturaInformacionController.php",
+            type: "POST",
+            datatype: "xml",
+            data: ({
+                'metodo': 'getGuardarComponente',
+                'nombre': $("#Nombre").val(),
+                'marca': $("#Marca").val(),
+                'modelo': $("#Modelo").val(),
+                'serial': $("#Serial").val(),
+                'idEstado': $("#IdEstado").val(),
+                'idSolicitante': $("#IdSolicitante").val(),
+                'idEncargado': $("#IdEncargado").val()
+            }),
+            success: function (xml) {
+                bootbox.hideAll();
+                $(xml).find('registro').each(function () {
+                    if ($(this).text() == 'NOEXITOSO') {
+                       console.log("NOEXITOSO");
+                    } else {
+                        console.log("EXITOSO");
+                    }
+                });
+            }
+        });
+    });
+
 });

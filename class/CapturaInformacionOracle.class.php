@@ -62,5 +62,25 @@ class CapturaInformacionOracle {
 
         return $data;
     }
+
+    function getGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
+        $select = "SELECT MAX(ID)+1 AS NEXTID FROM COMPONENTES";
+        $id = $this->database->query($select);
+
+        $sql = "INSERT INTO COMPONENTES (ID, NOMBRE, MARCA, MODELO, SERIAL, IDESTADO, IDSOLICITANTE, IDENCARGADO) VALUES (" + $id[0]['NEXTID'] + ", '" + $nombre + "', '" + $marca + "', '" + $modelo + "', '" + $serial + "', " + $idEstado + ", " + $idSolicitante + ", " + $idEncargado + ")";
+        $data = $this->database->insert($sql);
+
+        return $data;
+    }
+
+    function getActualizarComponente($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
+        $sql = "UPDATE COMPONENTES SET NOMBRE = '" + $nombre + "', MARCA = '" + $marca + "', MODELO = '" + $modelo + "', SERIAL = '" + $serial + "', IDESTADO = " + $idEstado + ", IDSOLICITANTE = " + $idSolicitante + ", IDENCARGADO = " + $idEncargado + " WHERE ID =" + $id;
+        $data = $this->database->query($sql);
+
+        var_dump($data);
+        die();
+
+        return $data;
+    }
 }
 ?>

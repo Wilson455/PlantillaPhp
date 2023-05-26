@@ -40,6 +40,28 @@ class OracleDatabase implements IDataBase {
         return $res;
     }
 
-    function nonReturnQuery($sql) {}
+    function insert($sql) {
+        if (!$this->conn) {
+            $e = oci_error();
+            echo $e['message'];
+            die();
+        }
+        $query = oci_parse($this->conn, $sql);
+        oci_execute($query);
+        oci_close($this->conn);
+        return "INSERT";
+    }
+
+    function nonReturnQuery($sql) {
+        if (!$this->conn) {
+            $e = oci_error();
+            echo $e['message'];
+            die();
+        }
+        $query = oci_parse($this->conn, $sql);
+        oci_execute($query);
+        oci_close($this->conn);
+        return "UPDATE";
+    }
 }
 ?>

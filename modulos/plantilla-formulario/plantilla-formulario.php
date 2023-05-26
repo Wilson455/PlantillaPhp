@@ -39,6 +39,7 @@ if (!isset($_SESSION['Usuario'])) {
                 <form>
                     <div class="col-md-3">
                         <div class="form-group">
+                            <input type="hidden" class="form-control" id="idComponente" placeholder="Ingrese el nombre" style="border-radius: 0.5rem !important;">
                             <label for="Nombre">Nombre</label>
                             <input type="text" class="form-control" id="Nombre" placeholder="Ingrese el nombre" style="border-radius: 0.5rem !important;">
                         </div>
@@ -83,7 +84,7 @@ if (!isset($_SESSION['Usuario'])) {
                     <div class="col-md-3"></div>
                     <div class="col-md-12" style="text-align: center;">
                         <div class="form-group">
-                            <button class="btn btn-success">Guardar</button>
+                            <button class="btn btn-success" id="btnGuardar">Guardar</button>
                         </div>
                     </div>
                 </form>
