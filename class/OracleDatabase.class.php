@@ -46,10 +46,12 @@ class OracleDatabase implements IDataBase {
             echo $e['message'];
             die();
         }
+        
         $query = oci_parse($this->conn, $sql);
-        oci_execute($query);
-        oci_close($this->conn);
-        return "INSERT";
+        $return = oci_execute($query);
+		oci_close($this->conn);
+
+        return $return;
     }
 
     function nonReturnQuery($sql) {

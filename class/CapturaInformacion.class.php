@@ -22,6 +22,13 @@ class CapturaInformacion {
         return $data;
     }
 
+    public function saveInsert() {
+        $sql = "INSERT INTO [Componente] ([Nombre],[Marca],[Modelo],[Serial],[IdEstado],[IdSolicitante],[IdEncargado],[Fecha]) VALUES ('1','1','1','1','1','1','1',GETDATE())";
+        $data = $this->database->Insert($sql);
+
+        return $data;
+    }
+
     function getTipoSolicitante() {
         $cp = new CapturaInformacion();
 

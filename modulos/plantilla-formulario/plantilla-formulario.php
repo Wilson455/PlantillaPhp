@@ -77,7 +77,7 @@ if (!isset($_SESSION['Usuario'])) {
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="exampleFormControlSelect1">Estado</label>
-                            <select class="form-control" id="Estado" style="border-radius: 0.5rem !important;">
+                            <select class="form-control" id="IdEstado" style="border-radius: 0.5rem !important;">
                             </select>
                         </div>
                     </div>

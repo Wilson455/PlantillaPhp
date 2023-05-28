@@ -2,6 +2,7 @@
 
 session_start();
 require_once('../class/CapturaInformacionOracle.class.php');
+require_once('../class/CapturaInformacion.class.php');
 require_once('../class/XML.class.php');
 
 switch ($_POST['metodo']) {
@@ -14,12 +15,25 @@ switch ($_POST['metodo']) {
     case 'getConteoComponentes':
         XML::xmlResponse(getConteoComponentes());
         break;
-    case 'getGuardarComponente':
-        XML::xmlResponse(getGuardarComponente($_POST['nombre'],$_POST['marca'],$_POST['modelo'],$_POST['serial'],$_POST['idEstado'],$_POST['idSolicitante'],$_POST['idEncargado']));
+    case 'saveGuardarComponentes':
+        XML::xmlResponse(saveGuardarComponentes($_POST['nombre'], $_POST['marca'], $_POST['modelo'], $_POST['serial'], $_POST['idEstado'], $_POST['idSolicitante'], $_POST['idEncargado']));
         break;
     case 'getActualizarComponente':
         XML::xmlResponse(getActualizarComponente($_POST['id'],$_POST['nombre'],$_POST['marca'],$_POST['modelo'],$_POST['serial'],$_POST['idEstado'],$_POST['idSolicitante'],$_POST['idEncargado']));
         break;
+}
+
+function saveGuardarComponentes($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {    
+    $captura = new CapturaInformacionOracle();
+    $data = $captura->saveGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
+
+    $xml = "";
+    if ($data) {
+        $xml .= "<registro><![CDATA[". $data ."]]></registro>";
+    } else {
+        $xml .= "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
 }
 
 function getEstados() {
@@ -72,17 +86,6 @@ function getConteoComponentes() {
                     >EXITOSO</registro>";
         }
        
-    } else {
-        $xml = "<registro>NOEXITOSO</registro>";
-    }
-    return $xml;
-}
-
-function getGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
-    $captura = new CapturaInformacionOracle();
-    $data = $captura->getGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
-    if ($data) {
-        $xml = "<registro>EXITOSO</registro>";
     } else {
         $xml = "<registro>NOEXITOSO</registro>";
     }
