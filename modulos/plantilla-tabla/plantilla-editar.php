@@ -17,6 +17,7 @@ if (!isset($_SESSION['Usuario'])) {
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" />                        
     <link href="../../css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="../../css/datepicker.css" rel="stylesheet" type="text/css"/>   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
     <link href="../../css/AdminLTE.css" rel="stylesheet" type="text/css" />      
     <!--<link href="css/plantilla-formulario.css" rel="stylesheet" type="text/css"/>-->
     <script type="text/javascript" src="../../js/jquery1.9.js"></script>            

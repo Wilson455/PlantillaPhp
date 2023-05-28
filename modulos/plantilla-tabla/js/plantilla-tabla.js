@@ -81,7 +81,7 @@ $(document).ready(function () {
                             $(this).attr('ESTADO'),
                             $(this).attr('IDSOLICITANTE'),
                             $(this).attr('IDENCARGADO'),
-                            '<button class="btn btn-primary" onclick="editar(' + $(this).attr('ID') + ')">Editar</button>'
+                            '<button class="btn btn-primary" onclick="editar(' + $(this).attr('ID') + ')">M</button><button class="btn btn-danger" onclick="eliminar(' + $(this).attr('ID') + ')">E</button>'
                         ]);
                     }
                 });
@@ -120,4 +120,7 @@ $(document).ready(function () {
 
 function editar(id) {
     window.location = './plantilla-editar.php?id='+id;
+}
+function eliminar(id) {
+    alert("Eliminar");
 }
