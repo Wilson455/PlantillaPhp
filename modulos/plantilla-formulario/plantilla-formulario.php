@@ -31,7 +31,7 @@ if (!isset($_SESSION['Usuario'])) {
             <div class="row">
                 <div>
                     <div class="page-header">
-                        <h2>Formulario</h2>
+                        <h2>Crear registro</h2>
                     </div>
                 </div>
             </div>

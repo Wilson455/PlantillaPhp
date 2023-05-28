@@ -33,7 +33,7 @@ if (!isset($_SESSION['Usuario'])) {
             <div class="row">
                 <div>
                     <div class="page-header">
-                        <h2>Formulario</h2>
+                        <h2>Registro #<?php echo $id  ?></h2>
                     </div>
                 </div>
             </div>
