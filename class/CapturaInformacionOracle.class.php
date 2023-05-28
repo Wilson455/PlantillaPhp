@@ -64,11 +64,15 @@ class CapturaInformacionOracle {
     }
 
     public function saveGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
-        
+        $id = 1;
         $select = "SELECT MAX(ID)+1 AS NEXTID FROM COMPONENTES";
-        $id = $this->databaseOracle->query($select);
+        $sqlSelect = $this->databaseOracle->query($select);
 
-        $data = $this->insertComponent($id[0]['NEXTID'], $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
+        if($sqlSelect[0]['NEXTID'] > 0){
+            $id = $sqlSelect[0]['NEXTID'];
+        }
+
+        $data = $this->insertComponent($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
 
         return $data;
     }
@@ -80,12 +84,18 @@ class CapturaInformacionOracle {
         return $dataInsert;
     }
 
-    public function getActualizarComponente($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
-        $sql = "UPDATE COMPONENTES SET NOMBRE = '" + $nombre + "', MARCA = '" + $marca + "', MODELO = '" + $modelo + "', SERIAL = '" + $serial + "', IDESTADO = " + $idEstado + ", IDSOLICITANTE = " + $idSolicitante + ", IDENCARGADO = " + $idEncargado + " WHERE ID =" + $id;
+    public function getDatosComponente($id) {
+        $sql = "SELECT  C.ID, C.NOMBRE, C.MARCA, C.MODELO, C.SERIAL, C.IDESTADO, C.IDSOLICITANTE, C.IDENCARGADO
+                FROM COMPONENTES C
+                WHERE C.ID ='" . $id . "'";
         $data = $this->databaseOracle->query($sql);
 
-        var_dump($data);
-        die();
+        return $data;
+    }
+
+    public function getActualizarComponente($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
+        $sql = "UPDATE COMPONENTES SET NOMBRE = '" . $nombre . "', MARCA = '" . $marca . "', MODELO = '" . $modelo . "', SERIAL = '" . $serial . "', IDESTADO = " . $idEstado . ", IDSOLICITANTE = " . $idSolicitante . ", IDENCARGADO = " . $idEncargado . " WHERE ID =" . $id;
+        $data = $this->databaseOracle->insert($sql);
 
         return $data;
     }

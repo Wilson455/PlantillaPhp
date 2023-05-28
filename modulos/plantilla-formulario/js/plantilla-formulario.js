@@ -73,6 +73,7 @@ $(document).ready(function () {
                         });
                     } else {
                         console.log("Guardado");
+                        alert("Se ha guardado Correctamente");
                         bootbox.dialog({
                             message: '<table align="center"><tr><td>Se ha guardado Correctamente</td></tr></table>',
                             title: "Guardado",

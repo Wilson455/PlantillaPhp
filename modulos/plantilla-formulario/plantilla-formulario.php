@@ -65,13 +65,13 @@ if (!isset($_SESSION['Usuario'])) {
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="IdSolicitante">IdSolicitante</label>
-                            <input type="text" class="form-control" id="IdSolicitante" placeholder="Ingrese el nombre" style="border-radius: 0.5rem !important;">
+                            <input type="text" class="form-control" id="IdSolicitante" placeholder="Ingrese el id del solicitante" style="border-radius: 0.5rem !important;">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="IdEncargado">IdEncargado</label>
-                            <input type="text" class="form-control" id="IdEncargado" placeholder="Ingrese la edad" style="border-radius: 0.5rem !important;">
+                            <input type="text" class="form-control" id="IdEncargado" placeholder="Ingrese el id del encargado" style="border-radius: 0.5rem !important;">
                         </div>
                     </div>
                     <div class="col-md-3">

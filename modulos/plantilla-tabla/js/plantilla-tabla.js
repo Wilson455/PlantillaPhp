@@ -119,6 +119,5 @@ $(document).ready(function () {
 });
 
 function editar(id) {
-    console.log(id);
-    window.location = './plantilla-editar.php';
+    window.location = './plantilla-editar.php?id='+id;
 }

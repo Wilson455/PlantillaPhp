@@ -19,21 +19,11 @@ switch ($_POST['metodo']) {
         XML::xmlResponse(saveGuardarComponentes($_POST['nombre'], $_POST['marca'], $_POST['modelo'], $_POST['serial'], $_POST['idEstado'], $_POST['idSolicitante'], $_POST['idEncargado']));
         break;
     case 'getActualizarComponente':
-        XML::xmlResponse(getActualizarComponente($_POST['id'],$_POST['nombre'],$_POST['marca'],$_POST['modelo'],$_POST['serial'],$_POST['idEstado'],$_POST['idSolicitante'],$_POST['idEncargado']));
+        XML::xmlResponse(getActualizarComponente($_POST['id'], $_POST['nombre'], $_POST['marca'],$_POST['modelo'],$_POST['serial'],$_POST['idEstado'],$_POST['idSolicitante'],$_POST['idEncargado']));
         break;
-}
-
-function saveGuardarComponentes($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {    
-    $captura = new CapturaInformacionOracle();
-    $data = $captura->saveGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
-
-    $xml = "";
-    if ($data) {
-        $xml .= "<registro><![CDATA[". $data ."]]></registro>";
-    } else {
-        $xml .= "<registro>NOEXITOSO</registro>";
-    }
-    return $xml;
+    case 'getDatosComponente':
+        XML::xmlResponse(getDatosComponente($_POST['id']));
+        break;
 }
 
 function getEstados() {
@@ -88,6 +78,35 @@ function getConteoComponentes() {
        
     } else {
         $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function saveGuardarComponentes($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {    
+    $captura = new CapturaInformacionOracle();
+    $data = $captura->saveGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
+
+    $xml = "";
+    if ($data) {
+        $xml .= "<registro><![CDATA[". $data ."]]></registro>";
+    } else {
+        $xml .= "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getDatosComponente($id) {    
+    $captura = new CapturaInformacionOracle();
+    $data = $captura->getDatosComponente($id);
+
+    $xml = "";
+
+    if ($data) {
+        for ($i=0; $i < count($data); $i++) { 
+            $xml .= "<registro nombre='" . $data[$i]['NOMBRE'] . "' marca='" . $data[$i]['MARCA'] . "' modelo='" . $data[$i]['MODELO'] . "' serial='" . $data[$i]['SERIAL'] . "' idEstado='" . $data[$i]['IDESTADO'] . "' idSolicitante='" . $data[$i]['IDSOLICITANTE'] . "' idEncargado='" . $data[$i]['IDENCARGADO'] . "'><![CDATA[". $data[$i]['ID'] ."]]></registro>";
+        }
+    } else {
+        $xml .= "<registro>NOEXITOSO</registro>";
     }
     return $xml;
 }

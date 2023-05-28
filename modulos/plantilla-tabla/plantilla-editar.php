@@ -5,6 +5,7 @@ if (!isset($_SESSION['Usuario'])) {
     //si no existe usuario
     header('Location: ../../pages/AccesoDenegado.php');
 }else{
+    $id = $_REQUEST['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,6 +40,7 @@ if (!isset($_SESSION['Usuario'])) {
                 <form>
                     <div class="col-md-3">
                         <div class="form-group">
+                            <input type="hidden" class="form-control" id="Id" value="<?php echo $id  ?>" style="border-radius: 0.5rem !important;">
                             <label for="Nombre">Nombre</label>
                             <input type="text" class="form-control" id="Nombre" placeholder="Ingrese el nombre" style="border-radius: 0.5rem !important;">
                         </div>
@@ -75,7 +77,7 @@ if (!isset($_SESSION['Usuario'])) {
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Estado</label>
+                            <label for="Estado">Estado</label>
                             <select class="form-control" id="Estado" style="border-radius: 0.5rem !important;">
                             </select>
                         </div>
