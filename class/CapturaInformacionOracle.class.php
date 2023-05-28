@@ -42,10 +42,28 @@ class CapturaInformacionOracle {
         return $html;
     }
 
+    public function getAreas() {
+        $sql = "SELECT  ID, NOMBRE
+                FROM AREAS
+                WHERE ESTADO = 1
+                ORDER BY ID ASC";
+        $data = $this->databaseOracle->query($sql);
+
+        $html = "<option value ='-1'>Seleccione...</option>";
+        for ($i = 0; $i < count($data); $i++) {
+            $html .= "<option value='" . $data [$i]['ID'] . "'>" . $data [$i]['NOMBRE'] . "</option>";
+        }
+
+        return $html;
+    }
+
+
+
     public function getListaComponentes() {
-        $sql = "SELECT  C.ID, C.NOMBRE, C.MARCA, C.MODELO, C.SERIAL, E.NOMBRE AS ESTADO, C.IDSOLICITANTE, C.IDENCARGADO
+        $sql = "SELECT  C.ID, C.COMPONENTE, C.MARCA, C.MODELO, C.SERIAL, E.NOMBRE AS ESTADO, C.IDENCARGADO, A.NOMBRE AS AREA
                 FROM COMPONENTES C
                 INNER JOIN ESTADOS E ON C.IDESTADO = E.ID
+                INNER JOIN AREAS A ON C.AREA = A.ID
                 ORDER BY C.ID ASC";
         $data = $this->databaseOracle->query($sql);
 
@@ -53,17 +71,18 @@ class CapturaInformacionOracle {
     }
 
     public function getConteoComponentes() {
-        $sql = "SELECT C.NOMBRE, C.MARCA, C.MODELO, E.NOMBRE AS ESTADO, count(*) AS CONTEO
+        $sql = "SELECT C.COMPONENTE, C.MARCA, C.MODELO, E.NOMBRE AS ESTADO, count(*) AS CONTEO
                 FROM COMPONENTES C
                 INNER JOIN ESTADOS E ON C.IDESTADO = E.ID
-                GROUP BY C.NOMBRE, C.MARCA, C.MODELO, E.NOMBRE
-                ORDER BY C.NOMBRE ASC";
+                INNER JOIN AREAS A ON C.AREA = A.ID
+                GROUP BY C.COMPONENTE, C.MARCA, C.MODELO, E.NOMBRE
+                ORDER BY C.COMPONENTE ASC";
         $data = $this->databaseOracle->query($sql);
 
         return $data;
     }
 
-    public function saveGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
+    public function saveGuardarComponente($componente, $marca, $modelo, $serial, $idEstado, $area, $idEncargado) {
         $id = 1;
         $select = "SELECT MAX(ID)+1 AS NEXTID FROM COMPONENTES";
         $sqlSelect = $this->databaseOracle->query($select);
@@ -72,20 +91,20 @@ class CapturaInformacionOracle {
             $id = $sqlSelect[0]['NEXTID'];
         }
 
-        $data = $this->insertComponent($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
+        $data = $this->insertComponent($id, $componente, $marca, $modelo, $serial, $idEstado, $area, $idEncargado);
 
         return $data;
     }
 
-    public function insertComponent($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado){
-        $sqlInsert = "insert into COMPONENTES(ID, NOMBRE, MARCA, MODELO, SERIAL, IDESTADO, IDSOLICITANTE, IDENCARGADO)VALUES('$id', '$nombre', '$marca', '$modelo', '$serial', '$idEstado', '$idSolicitante', '$idEncargado')";
+    public function insertComponent($id, $componente, $marca, $modelo, $serial, $idEstado, $area, $idEncargado){
+        $sqlInsert = "insert into COMPONENTES(ID, COMPONENTE, MARCA, MODELO, SERIAL, IDESTADO, AREA, IDENCARGADO)VALUES('$id', '$componente', '$marca', '$modelo', '$serial', '$idEstado', '$area', '$idEncargado')";
         $dataInsert = $this->databaseOracle->insert($sqlInsert);
 
         return $dataInsert;
     }
 
     public function getDatosComponente($id) {
-        $sql = "SELECT  C.ID, C.NOMBRE, C.MARCA, C.MODELO, C.SERIAL, C.IDESTADO, C.IDSOLICITANTE, C.IDENCARGADO
+        $sql = "SELECT  C.ID, C.COMPONENTE, C.MARCA, C.MODELO, C.SERIAL, C.IDESTADO, C.AREA, C.IDENCARGADO
                 FROM COMPONENTES C
                 WHERE C.ID ='" . $id . "'";
         $data = $this->databaseOracle->query($sql);
@@ -93,8 +112,16 @@ class CapturaInformacionOracle {
         return $data;
     }
 
-    public function getActualizarComponente($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
-        $sql = "UPDATE COMPONENTES SET NOMBRE = '" . $nombre . "', MARCA = '" . $marca . "', MODELO = '" . $modelo . "', SERIAL = '" . $serial . "', IDESTADO = " . $idEstado . ", IDSOLICITANTE = " . $idSolicitante . ", IDENCARGADO = " . $idEncargado . " WHERE ID =" . $id;
+    public function getActualizarComponente($id, $componente, $marca, $modelo, $serial, $idEstado, $area, $idEncargado) {
+        $sql = "UPDATE COMPONENTES SET COMPONENTE = '" . $componente . "', MARCA = '" . $marca . "', MODELO = '" . $modelo . "', SERIAL = '" . $serial . "', IDESTADO = " . $idEstado . ", AREA = " . $area . ", IDENCARGADO = " . $idEncargado . " WHERE ID =" . $id;
+        $data = $this->databaseOracle->insert($sql);
+
+        return $data;
+    }
+
+    public function eliminarComponente($id) {
+        $sql = "DELETE FROM COMPONENTES
+                WHERE ID ='" . $id . "'";
         $data = $this->databaseOracle->insert($sql);
 
         return $data;

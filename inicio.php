@@ -23,7 +23,7 @@ if (!isset($_SESSION['Usuario'])) {
         <html>
             <head>
                 <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
-                <title>Plantilla</title>
+                <title>Inventario TI</title>
                 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
                 <!--<link href="css/jquery.dataTables.css" rel="stylesheet" type="text/css" />-->
                 <link href="css/site.css" rel="stylesheet" type="text/css" />
@@ -58,7 +58,7 @@ if (!isset($_SESSION['Usuario'])) {
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <a href="#">
-                                <label style="font-size: 25px;color:#fff; padding-top: 7px;">Plantilla PHP</label>
+                                <label style="font-size: 25px;color:#fff; padding-top: 7px;">INVENTARIO TI</label>
                             </a>
                             <button type="button" id="sidebarCollapse" class="btn btn-info">
                                 <i class="fa fa-bars"></i>
@@ -105,14 +105,14 @@ if (!isset($_SESSION['Usuario'])) {
                                 <li  id="1">
                                     <li>
                                         <a  class="Bloqueo" target="centerframe" href="modulos/plantilla-tabla/plantilla-tabla.php">
-                                            <i class="fa fa-table"></i> <span>Menú Tabla</span>
+                                            <i class="fa fa-table"></i> <span>Tablero</span>
                                         </a>
                                     </li>
                                 </li>
                                 <li  id="2">
                                     <li>
                                         <a  class="Bloqueo" target="centerframe" href="modulos/plantilla-formulario/plantilla-formulario.php">
-                                            <i class="fa fa-list"></i> <span>Menú Formulario</span>
+                                            <i class="fa fa-list"></i> <span>Registrar componente</span>
                                         </a>
                                     </li>
                                 </li>

@@ -23,7 +23,7 @@ class CapturaInformacion {
     }
 
     public function saveInsert() {
-        $sql = "INSERT INTO [Componente] ([Nombre],[Marca],[Modelo],[Serial],[IdEstado],[IdSolicitante],[IdEncargado],[Fecha]) VALUES ('1','1','1','1','1','1','1',GETDATE())";
+        $sql = "INSERT INTO [Componente] ([Nombre],[Marca],[Modelo],[Serial],[IdEstado],[IdSolicitante],[Area],[Fecha]) VALUES ('1','1','1','1','1','1','1',GETDATE())";
         $data = $this->database->Insert($sql);
 
         return $data;

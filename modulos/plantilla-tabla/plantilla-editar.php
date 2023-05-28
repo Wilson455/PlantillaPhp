@@ -42,8 +42,8 @@ if (!isset($_SESSION['Usuario'])) {
                     <div class="col-md-3">
                         <div class="form-group">
                             <input type="hidden" class="form-control" id="Id" value="<?php echo $id  ?>" style="border-radius: 0.5rem !important;">
-                            <label for="Nombre">Nombre</label>
-                            <input type="text" class="form-control" id="Nombre" placeholder="Ingrese el nombre" style="border-radius: 0.5rem !important;">
+                            <label for="Componente">Componente</label>
+                            <input type="text" class="form-control" id="Componente" placeholder="Ingrese el Componente" style="border-radius: 0.5rem !important;">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -66,15 +66,15 @@ if (!isset($_SESSION['Usuario'])) {
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="IdSolicitante">IdSolicitante</label>
-                            <input type="text" class="form-control" id="IdSolicitante" placeholder="Ingrese el nombre" style="border-radius: 0.5rem !important;">
+                            <label for="IdEncargado">IdEncargado</label>
+                            <input type="text" class="form-control" id="IdEncargado" placeholder="Ingrese el nombre" style="border-radius: 0.5rem !important;">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="IdEncargado">IdEncargado</label>
-                            <input type="text" class="form-control" id="IdEncargado" placeholder="Ingrese la edad" style="border-radius: 0.5rem !important;">
-                        </div>
+                            <label for="Area">Area</label>
+                            <select class="form-control" id="Areas" style="border-radius: 0.5rem !important;">
+                            </select>                        </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">

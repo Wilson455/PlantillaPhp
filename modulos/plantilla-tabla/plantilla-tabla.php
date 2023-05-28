@@ -27,14 +27,14 @@ if (!isset($_SESSION['Usuario'])) {
 </head>
 <body>
     <div class="container">
-        <h1>Plantilla Tablas</h1>
+        <h1>Inventario TI </h1>
         
         <div style="width:50%;margin: auto;text-align: center;">
             <h3>Conteo de Componentes</h3>
             <table id="conteoComponentes" class="table table-striped example2" style="width:100%;">
                 <thead>
                     <tr>
-                        <th>NOMBRE</th>
+                        <th>COMPONENTE</th>
                         <th>MARCA</th>
                         <th>MODELO</th>
                         <th>ESTADO</th>
@@ -51,13 +51,13 @@ if (!isset($_SESSION['Usuario'])) {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>NOMBRE</th>
+                        <th>COMPONENTE</th>
                         <th>MARCA</th>
                         <th>MODELO</th>
                         <th>SERIAL</th>
                         <th>ESTADO</th>
-                        <th>IDSOLICITANTE</th>
                         <th>IDENCARGADO</th>
+                        <th>AREA</th>
                         <th>ACCIONES</th>
                     </tr>
                 </thead>

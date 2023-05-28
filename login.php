@@ -5,7 +5,7 @@ session_start();
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Login Plantilla</title>
+        <title>Login Inventario TI</title>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
         <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <script src="js/jquery1.9.js"></script>     
@@ -22,7 +22,7 @@ session_start();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 logo">
-                    <h1>Plantilla PHP</h1>
+                    <h1>Inventario TI</h1>
                 </div>
             </div>
             <div class="row">

@@ -9,6 +9,9 @@ switch ($_POST['metodo']) {
     case 'getEstados':
         XML::xmlResponse(getEstados());
         break;
+    case 'getAreas':
+            XML::xmlResponse(getAreas());
+            break;
     case 'getListaComponentes':
         XML::xmlResponse(getListaComponentes());
         break;
@@ -16,19 +19,33 @@ switch ($_POST['metodo']) {
         XML::xmlResponse(getConteoComponentes());
         break;
     case 'saveGuardarComponentes':
-        XML::xmlResponse(saveGuardarComponentes($_POST['nombre'], $_POST['marca'], $_POST['modelo'], $_POST['serial'], $_POST['idEstado'], $_POST['idSolicitante'], $_POST['idEncargado']));
+        XML::xmlResponse(saveGuardarComponentes($_POST['componente'], $_POST['marca'], $_POST['modelo'], $_POST['serial'], $_POST['idEstado'], $_POST['area'], $_POST['idEncargado']));
         break;
     case 'getActualizarComponente':
-        XML::xmlResponse(getActualizarComponente($_POST['id'], $_POST['nombre'], $_POST['marca'],$_POST['modelo'],$_POST['serial'],$_POST['idEstado'],$_POST['idSolicitante'],$_POST['idEncargado']));
+        XML::xmlResponse(getActualizarComponente($_POST['id'], $_POST['componente'], $_POST['marca'],$_POST['modelo'],$_POST['serial'],$_POST['idEstado'], $_POST['area'],$_POST['idEncargado']));
         break;
     case 'getDatosComponente':
         XML::xmlResponse(getDatosComponente($_POST['id']));
+        break;
+    case 'eliminarComponente':
+        XML::xmlResponse(eliminarComponente($_POST['id']));
         break;
 }
 
 function getEstados() {
     $captura = new CapturaInformacionOracle();
     $data = $captura->getEstados();
+    if ($data) {
+        $xml .= "<registro><![CDATA[" . $data . "]]></registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function getAreas() {
+    $captura = new CapturaInformacionOracle();
+    $data = $captura->getAreas();
     if ($data) {
         $xml .= "<registro><![CDATA[" . $data . "]]></registro>";
     } else {
@@ -45,12 +62,12 @@ function getListaComponentes() {
         for($i = 0; $i < count($data); $i++){
             $xml .= "<registro
                         ID='".$data[$i]['ID']."'
-                        NOMBRE='".$data[$i]['NOMBRE']."'
+                        COMPONENTE='".$data[$i]['COMPONENTE']."'
                         MARCA='".$data[$i]['MARCA']."'
                         MODELO='".$data[$i]['MODELO']."'
                         SERIAL='".$data[$i]['SERIAL']."'
                         ESTADO='".$data[$i]['ESTADO']."'
-                        IDSOLICITANTE='".$data[$i]['IDSOLICITANTE']."'
+                        AREA='".$data[$i]['AREA']."'
                         IDENCARGADO='".$data[$i]['IDENCARGADO']."'
                     >EXITOSO</registro>";
         }
@@ -68,7 +85,7 @@ function getConteoComponentes() {
         $xml .= "";
         for($i = 0; $i < count($data); $i++){
             $xml .= "<registro
-                        NOMBRE='".$data[$i]['NOMBRE']."'
+                        COMPONENTE='".$data[$i]['COMPONENTE']."'
                         MARCA='".$data[$i]['MARCA']."'
                         MODELO='".$data[$i]['MODELO']."'
                         ESTADO='".$data[$i]['ESTADO']."'
@@ -82,9 +99,9 @@ function getConteoComponentes() {
     return $xml;
 }
 
-function saveGuardarComponentes($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {    
+function saveGuardarComponentes($componente, $marca, $modelo, $serial, $idEstado, $area, $idEncargado) {    
     $captura = new CapturaInformacionOracle();
-    $data = $captura->saveGuardarComponente($nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
+    $data = $captura->saveGuardarComponente($componente, $marca, $modelo, $serial, $idEstado, $area, $idEncargado);
 
     $xml = "";
     if ($data) {
@@ -103,7 +120,7 @@ function getDatosComponente($id) {
 
     if ($data) {
         for ($i=0; $i < count($data); $i++) { 
-            $xml .= "<registro nombre='" . $data[$i]['NOMBRE'] . "' marca='" . $data[$i]['MARCA'] . "' modelo='" . $data[$i]['MODELO'] . "' serial='" . $data[$i]['SERIAL'] . "' idEstado='" . $data[$i]['IDESTADO'] . "' idSolicitante='" . $data[$i]['IDSOLICITANTE'] . "' idEncargado='" . $data[$i]['IDENCARGADO'] . "'><![CDATA[". $data[$i]['ID'] ."]]></registro>";
+            $xml .= "<registro componente='" . $data[$i]['COMPONENTE'] . "' marca='" . $data[$i]['MARCA'] . "' modelo='" . $data[$i]['MODELO'] . "' serial='" . $data[$i]['SERIAL'] . "' idEstado='" . $data[$i]['IDESTADO'] . "' idEncargado='" . $data[$i]['IDENCARGADO'] . "' area='" . $data[$i]['AREA'] . "'><![CDATA[". $data[$i]['ID'] ."]]></registro>";
         }
     } else {
         $xml .= "<registro>NOEXITOSO</registro>";
@@ -111,9 +128,23 @@ function getDatosComponente($id) {
     return $xml;
 }
 
-function getActualizarComponente($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado) {
+function getActualizarComponente($id, $componente, $marca, $modelo, $serial, $idEstado, $area, $idEncargado) {
     $captura = new CapturaInformacionOracle();
-    $data = $captura->getActualizarComponente($id, $nombre, $marca, $modelo, $serial, $idEstado, $idSolicitante, $idEncargado);
+   
+    $data = $captura->getActualizarComponente($id, $componente, $marca, $modelo, $serial, $idEstado, $area, $idEncargado);
+
+    if ($data) {
+        $xml = "<registro>EXITOSO</registro>";
+    } else {
+        $xml = "<registro>NOEXITOSO</registro>";
+    }
+    return $xml;
+}
+
+function eliminarComponente($id) {
+    $captura = new CapturaInformacionOracle();
+   
+    $data = $captura->eliminarComponente($id);
 
     if ($data) {
         $xml = "<registro>EXITOSO</registro>";

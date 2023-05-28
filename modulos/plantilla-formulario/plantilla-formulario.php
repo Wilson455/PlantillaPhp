@@ -39,9 +39,9 @@ if (!isset($_SESSION['Usuario'])) {
                 <form>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <input type="hidden" class="form-control" id="idComponente" placeholder="Ingrese el nombre" style="border-radius: 0.5rem !important;">
-                            <label for="Nombre">Nombre</label>
-                            <input type="text" class="form-control" id="Nombre" placeholder="Ingrese el nombre" style="border-radius: 0.5rem !important;">
+                            <input type="hidden" class="form-control" id="idComponente"  style="border-radius: 0.5rem !important;">
+                            <label for="Componente">Componente</label>
+                            <input type="text" class="form-control" id="Componente" placeholder="Ingrese el Componente" style="border-radius: 0.5rem !important;">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -64,15 +64,15 @@ if (!isset($_SESSION['Usuario'])) {
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="IdSolicitante">IdSolicitante</label>
-                            <input type="text" class="form-control" id="IdSolicitante" placeholder="Ingrese el id del solicitante" style="border-radius: 0.5rem !important;">
+                            <label for="IdEncargado">IdEncargado</label>
+                            <input type="text" class="form-control" id="IdEncargado" placeholder="Ingrese el id del encargado" style="border-radius: 0.5rem !important;">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="IdEncargado">IdEncargado</label>
-                            <input type="text" class="form-control" id="IdEncargado" placeholder="Ingrese el id del encargado" style="border-radius: 0.5rem !important;">
-                        </div>
+                            <label for="Area">Area</label>
+                            <select class="form-control" id="IdArea" style="border-radius: 0.5rem !important;">
+                            </select>                        </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">

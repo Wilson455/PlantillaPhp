@@ -74,13 +74,13 @@ $(document).ready(function () {
                     } else {
                         $("#listaComponentes").dataTable({destroy: true,}).fnAddData([
                             $(this).attr('ID'),
-                            $(this).attr('NOMBRE'),
+                            $(this).attr('COMPONENTE'),
                             $(this).attr('MARCA'),
                             $(this).attr('MODELO'),
                             $(this).attr('SERIAL'),
                             $(this).attr('ESTADO'),
-                            $(this).attr('IDSOLICITANTE'),
                             $(this).attr('IDENCARGADO'),
+                            $(this).attr('AREA'),
                             '<button class="btn btn-primary" onclick="editar(' + $(this).attr('ID') + ')">M</button><button class="btn btn-danger" onclick="eliminar(' + $(this).attr('ID') + ')">E</button>'
                         ]);
                     }
@@ -105,7 +105,7 @@ $(document).ready(function () {
                         $("#conteoComponentes").dataTable().fnClearTable();
                     } else {
                         $("#conteoComponentes").dataTable({destroy: true,}).fnAddData([
-                            $(this).attr('NOMBRE'),
+                            $(this).attr('COMPONENTE'),
                             $(this).attr('MARCA'),
                             $(this).attr('MODELO'),
                             $(this).attr('ESTADO'),
@@ -122,5 +122,23 @@ function editar(id) {
     window.location = './plantilla-editar.php?id='+id;
 }
 function eliminar(id) {
-    alert("Eliminar");
+    $.ajax({
+        url: "../../controller/CapturaInformacionController.php",
+        type: "POST",
+        datatype: "xml",
+        async: false,
+        data: ({
+            'metodo': 'eliminarComponente',
+            'id': id
+        }),
+        success: function (xml) {
+            $(xml).find('registro').each(function () {
+                if ($(this).text() == 'NOEXITOSO') {
+                } else {
+                    alert("Se elimino el registro con el id #" + id);
+                    window.location = '';
+                }
+            });
+        }
+    });
 }

@@ -10,8 +10,9 @@ $clave = htmlentities($_POST['password']);
 $sql = "SELECT  USUARIO, NOMBRECOMPLETO
         FROM    USUARIO 
         WHERE   USUARIO = '" . $_SESSION['Usuario'] . "' 
-         AND CLAVE = '" . $clave . "' AND ESTADO = 1";
-$data = $capturaO->database->query($sql);
+         AND CLAVE = '" . $clave . "'";
+    $data = $capturaO->databaseOracle->query($sql);
+
 
 if (!$data || !$data[0]) {
     $_SESSION['error'] = 1;

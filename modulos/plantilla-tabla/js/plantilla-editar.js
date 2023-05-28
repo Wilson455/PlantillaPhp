@@ -1,6 +1,7 @@
 $(document).ready(function () {
     
     getEstados();
+    getAreas();
     
     function getDatos() {
         $.ajax({
@@ -16,13 +17,13 @@ $(document).ready(function () {
                     if ($(this).text() == 'NOEXITOSO') {
                         $("#Estado").html("");
                     } else {
-                        $("#Nombre").val($(this).attr('nombre'));
+                        $("#Componente").val($(this).attr('componente'));
                         $("#Marca").val($(this).attr('marca'));
                         $("#Modelo").val($(this).attr('modelo'));
                         $("#Serial").val($(this).attr('serial'));
                         $("#Estado").val($(this).attr('idEstado'));
-                        $("#IdSolicitante").val($(this).attr('idSolicitante'));
                         $("#IdEncargado").val($(this).attr('idEncargado'));
+                        $("#Areas").val($(this).attr('area'));
                     }
                 });
             }
@@ -49,6 +50,27 @@ $(document).ready(function () {
         });
     }
 
+
+    function getAreas() {
+        $.ajax({
+            url: "../../controller/CapturaInformacionController.php",
+            type: "POST",
+            datatype: "xml",
+            data: ({
+                'metodo': 'getAreas'
+            }),
+            success: function (xml) {
+                $(xml).find('registro').each(function () {
+                    if ($(this).text() == 'NOEXITOSO') {
+                        $("#Areas").html("");
+                    } else {
+                        $("#Areas").html($(this).text());
+                    }
+                });
+            }
+        });
+    }
+
     $("#btnGuardar").click(function () {
         $.ajax({
             url: "../../controller/CapturaInformacionController.php",
@@ -57,12 +79,12 @@ $(document).ready(function () {
             data: ({
                 'metodo': 'getActualizarComponente',
                 'id': $("#Id").val(),
-                'nombre': $("#Nombre").val(),
+                'componente': $("#Componente").val(),
                 'marca': $("#Marca").val(),
                 'modelo': $("#Modelo").val(),
                 'serial': $("#Serial").val(),
                 'idEstado': $("#Estado").val(),
-                'idSolicitante': $("#IdSolicitante").val(),
+                'area': $("#Areas").val(),
                 'idEncargado': $("#IdEncargado").val()
             }),
             beforeSend: function () {

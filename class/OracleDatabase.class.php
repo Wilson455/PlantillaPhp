@@ -5,10 +5,10 @@ require_once('DataBase.interface.php');
 class OracleDatabase implements IDataBase {
     //Datos de Conexión
     var $host = "localhost";
-    var $database = "ORCLCDB";
-    var $user = "PRUEBA";
-    var $pass = "Sandero2023";
-    var $sid = "ORCLCDB";
+    var $database = "xe";
+    var $user = "SEMINARIO";
+    var $pass = "seminario";
+    var $sid = "xe";
    
     var $conn;
     var $numRows;
@@ -23,7 +23,7 @@ class OracleDatabase implements IDataBase {
         $this->conn = oci_connect($_user, $_password, $connection);
     }
 
-    function query($sql) {
+     public function query($sql) {
         if (!$this->conn) {
             $e = oci_error();
             echo $e['message'];

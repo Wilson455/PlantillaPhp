@@ -1,5 +1,6 @@
 $(document).ready(function () {
     getEstados();
+    getAreas();
     
     function getEstados() {
         $.ajax({
@@ -28,6 +29,33 @@ $(document).ready(function () {
         });
     }
 
+
+    function getAreas() {
+        $.ajax({
+            url: "../../controller/CapturaInformacionController.php",
+            type: "POST",
+            datatype: "xml",
+            data: ({
+                'metodo': 'getAreas'
+            }),
+            beforeSend: function () {
+                bootbox.dialog({
+                    message: '<table align="center"><tr><td>Cargando...</td></tr><tr><td><img src="../../imagenes/Cargando.gif"/></td></tr></table>',
+                    title: "Cargando"
+                });
+            },
+            success: function (xml) {
+                bootbox.hideAll();
+                $(xml).find('registro').each(function () {
+                    if ($(this).text() == 'NOEXITOSO') {
+                        $("#IdArea").html("");
+                    } else {
+                        $("#IdArea").html($(this).text());
+                    }
+                });
+            }
+        });
+    }
     $("#btnGuardar").click(function () {
         guadar();
     });
@@ -40,13 +68,13 @@ $(document).ready(function () {
             async: true,
             data: ({
                 'metodo': 'saveGuardarComponentes',
-                'nombre': $("#Nombre").val(),
+                'componente': $("#Componente").val(),
                 'marca': $("#Marca").val(),
                 'modelo': $("#Modelo").val(),
                 'serial': $("#Serial").val(),
                 'idEstado': $("#IdEstado").val(),
-                'idSolicitante': $("#IdSolicitante").val(),
-                'idEncargado': $("#IdEncargado").val()
+                'area': $("#IdArea").val(),
+                'idEncargado': $("#IdEncargado").val(),
             }),
             beforeSend: function () {
                 bootbox.dialog({

@@ -6,7 +6,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
+        <title>Acceso denegado</title>
         <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
         <script src="../js/jquery.min.js"></script> 
         <script src="../js/bootstrap.min.js" type="text/javascript"></script>
@@ -18,7 +18,7 @@ and open the template in the editor.
                 <h2><i class=""></i>403</h2>
                 <p>
                      Usted no posee los permisos necesarios para acceder a esta pagina.<br/>
-                    Por favor dirijase  <a href='http://192.168.1.2:9990/App_Plantilla/login.php'>Aqui.</a><br/><br/>               
+                    Por favor dirijase  <a href='http://localhost/InventarioTI_/login.php'>Aqui.</a><br/><br/>               
                      <img src="../imagenes/403.png"  align='center'/>  
                 </p>                
             </div>
